@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131228180523) do
+ActiveRecord::Schema.define(version: 20131228191052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "measurements", force: true do |t|
+    t.decimal  "height"
+    t.decimal  "weight"
+    t.integer  "user_id"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "measurements", ["person_id"], name: "index_measurements_on_person_id", using: :btree
+
+  create_table "national_averages", force: true do |t|
+    t.string   "gender"
+    t.decimal  "agemos"
+    t.decimal  "l"
+    t.decimal  "m"
+    t.decimal  "s"
+    t.decimal  "p50"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "people", force: true do |t|
     t.string   "first_name"
