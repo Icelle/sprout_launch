@@ -44,6 +44,7 @@ group :development, :test do
   gem 'spork'
   gem 'database_cleaner'
   gem 'pry'
+  gem 'validates_timeliness'
 end
 
 group :test do
