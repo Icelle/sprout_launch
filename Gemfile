@@ -41,7 +41,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'guard-rspec'
-  gem "spork-rails"
+  gem 'spork'
   gem 'database_cleaner'
   gem 'pry'
 end
