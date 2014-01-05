@@ -2,10 +2,8 @@
 
 FactoryGirl.define do
   factory :measurement do
-    height ""
-    weight ""
-    person_id ""
-    user_id 1
-    person nil
+    height 9.99
+    weight 9.99
+    person
   end
 end
