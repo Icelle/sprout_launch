@@ -33,18 +33,18 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'pry-rails'
+  gem 'database_cleaner'
+  gem 'validates_timeliness'
   gem 'factory_girl_rails'
-  gem 'valid_attribute'
-  gem 'shoulda'
   gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'valid_attribute'
   gem 'capybara'
+  gem 'pry-debugger'
   gem 'launchy'
   gem 'guard-rspec'
-  gem 'spork'
-  gem 'database_cleaner'
-  gem 'pry'
-  gem 'validates_timeliness'
+  gem 'spork-rails'
+  gem 'simple_form'
 end
 
 group :test do
