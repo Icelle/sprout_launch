@@ -7,6 +7,7 @@ class CreateNationalAverages < ActiveRecord::Migration
       t.decimal :m
       t.decimal :s
       t.decimal :p50
+      t.string  :stat_type
 
       t.timestamps
     end

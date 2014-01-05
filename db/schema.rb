@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20131228191052) do
   enable_extension "plpgsql"
 
   create_table "measurements", force: true do |t|
-    t.decimal  "height", null: false
-    t.decimal  "weight", null: false
-    t.integer  "user_id", null: false
-    t.integer  "person_id", null: false
+    t.decimal  "height"
+    t.decimal  "weight"
+    t.integer  "user_id"
+    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -34,15 +34,16 @@ ActiveRecord::Schema.define(version: 20131228191052) do
     t.decimal  "m"
     t.decimal  "s"
     t.decimal  "p50"
+    t.string   "stat_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "people", force: true do |t|
-    t.string   "first_name", null: false
-    t.string   "last_name", null: false
-    t.string   "gender", null: false
-    t.date     "birthday", null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "gender"
+    t.date     "birthday"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -51,11 +52,11 @@ ActiveRecord::Schema.define(version: 20131228191052) do
   add_index "people", ["user_id"], name: "index_people_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "first_name", null: false
-    t.string   "last_name", null: false
-    t.string   "user_name", null: false
-    t.string   "email", null: false
-    t.string   "password", null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "user_name"
+    t.string   "email"
+    t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
