@@ -41,6 +41,7 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'capybara'
   gem 'pry-debugger'
+  gem 'pry-rails'
   gem 'launchy'
   gem 'guard-rspec'
   gem 'spork-rails'
