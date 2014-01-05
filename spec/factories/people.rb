@@ -7,5 +7,19 @@ FactoryGirl.define do
     gender "female"
     birthday "2013-12-28"
     user
+
+  trait :male do
+    name   "Baby Boy"
+    gender "Male"
+  end
+
+  trait :female do
+    name   "Baby Girl"
+    gender "Female"
+  end
+
+  factory :person_male,   traits: [:male]
+  factory :person_female, traits: [:female]
+
   end
 end
