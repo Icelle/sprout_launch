@@ -46,6 +46,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'spork-rails'
   gem 'simple_form'
+  gem "distribution", "~> 0.7.0"
 end
 
 group :test do
