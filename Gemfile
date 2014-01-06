@@ -48,6 +48,8 @@ group :development, :test do
   gem 'simple_form'
   gem "distribution", "~> 0.7.0"
   gem 'devise'
+  gem 'email_spec'
+  gem 'mailcatcher'
 end
 
 group :test do
