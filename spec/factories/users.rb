@@ -5,6 +5,6 @@ FactoryGirl.define do
     first_name "Icelle"
     last_name "Ku"
     sequence(:email) {|x| "test#{x}@email.com"}
-    password "koakoa"
+    password "koakoakoa"
   end
 end
