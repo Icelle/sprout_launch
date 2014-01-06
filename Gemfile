@@ -47,6 +47,7 @@ group :development, :test do
   gem 'spork-rails'
   gem 'simple_form'
   gem "distribution", "~> 0.7.0"
+  gem 'devise'
 end
 
 group :test do
