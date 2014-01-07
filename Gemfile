@@ -50,6 +50,7 @@ group :development, :test do
   gem 'devise'
   gem 'email_spec'
   gem 'mailcatcher'
+  gem 'mandrill-api'
 end
 
 group :test do
