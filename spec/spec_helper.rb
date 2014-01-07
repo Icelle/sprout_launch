@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'spork'
+require 'rspec'
+require "email_spec"
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -24,6 +26,19 @@ Spork.prefork do
   RSpec.configure do |config|
     config.include(EmailSpec::Helpers)
     config.include(EmailSpec::Matchers)
+
+    config.before(:suite) do
+        DatabaseCleaner.strategy = :transaction
+        DatabaseCleaner.clean_with(:truncation)
+      end
+
+      config.before(:each) do
+        DatabaseCleaner.start
+      end
+
+      config.after(:each) do
+        DatabaseCleaner.clean
+      end
     # ## Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

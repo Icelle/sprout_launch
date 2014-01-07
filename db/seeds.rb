@@ -1,4 +1,5 @@
 require 'csv'
+require 'database_cleaner'
 
 def load_data
   files = {
