@@ -20,10 +20,12 @@ feature 'user signs up', %Q{
     ActionMailer::Base.deliveries = []
     prev_count = User.count
 
-    visit new_user_path
+    visit new_user_session_path
     fill_in 'First name', with: first_name
     fill_in 'Last name', with: last_name
     fill_in 'Email', with: email
+    fill_in 'Password', with: password
+    fill_in 'Password Confirmation', with: password_confirmation
     click_button 'Register'
 
     expect(page).to have_content('You registered successfully')
