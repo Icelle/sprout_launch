@@ -13,22 +13,22 @@ feature 'user signs up', %Q{
   #If user enters valid credentials, user received onscreen message that user successfully signed up and user can gain access to the system.
   #User will be sent a welcome email in his valid email address with a link confirming that user signed up for the website.
 
-  let(:user) { FactoryGirl.create(:user) }
+  let(:user) { FactoryGirl.build(:user) }
 
-  scenario 'specifies valid information, successfully signs up' do
+  scenario 'new user: specifies valid information, successfully signs up' do
     #clear out mail deliveries
     ActionMailer::Base.deliveries = []
     prev_count = User.count
 
-    visit new_user_session_path
-    fill_in 'First name', with: first_name
-    fill_in 'Last name', with: last_name
-    fill_in 'Email', with: email
-    fill_in 'Password', with: password
-    fill_in 'Password Confirmation', with: password_confirmation
-    click_button 'Register'
+    visit new_user_registration_path
+    fill_in 'First name', with: user.first_name
+    fill_in 'Last name', with: user.last_name
+    fill_in 'Email', with: user.email
+    fill_in 'user_password', with: user.password, exact: true
+    fill_in 'user_password_confirmation', with: user.password_confirmation, exact: true
+    click_button "Sign Up"
 
-    expect(page).to have_content('You registered successfully')
+    expect(page).to have_content('Thank you for signing up.')
     expect(User.count).to eql(prev_count + 1)
 
     #expect email details pertaining to the confirmation
@@ -39,8 +39,8 @@ feature 'user signs up', %Q{
   end
 
   scenario 'does not specify valid information, user sees errors' do
-    visit new_user_path
-    click_button "Register"
+    visit new_user_registration_path
+    click_button "Sign Up"
     expect(page).to have_content "can't be blank"
     expect(page).to have_content "can't be blank"
     expect(page).to have_content "can't be blank"
