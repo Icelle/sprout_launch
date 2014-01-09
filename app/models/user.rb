@@ -8,5 +8,5 @@ class User < ActiveRecord::Base
   validates :email, presence:true, email:true
   validates :password, presence:true
 
-  has_many :persons
+  has_many :people
 end
