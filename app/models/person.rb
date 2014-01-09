@@ -8,7 +8,7 @@ class Person < ActiveRecord::Base
   validates :birthday, :timeliness => {:on_or_before => lambda { Date.current }, :type => :date}
 
   belongs_to :user,
-    inverse_of: :persons
+    inverse_of: :people
 
   has_many :measurements
 end
