@@ -1,5 +1,4 @@
 require 'csv'
-
 module Seeds
   module NationalAvgData
     class << self
@@ -12,7 +11,11 @@ module Seeds
         files.each do |stat_type ,v|
           v.each do |filename|
             CSV.foreach(filename, :headers => true) do |row|
-              NationalAverage.create!(scrub_row(row.to_hash, stat_type))
+              data = scrub_row(row.to_hash, stat_type)
+              # if data exists in db, skip row
+              if NationalAverage.where(data).empty?
+                NationalAverage.create!(scrub_row(row.to_hash, stat_type))
+              end
             end
           end
         end
@@ -36,5 +39,6 @@ module Seeds
         scrubbed_row["stat_type"] = stat_type.to_s
         scrubbed_row
       end
-
-  load_data
+    end
+  end
+end
