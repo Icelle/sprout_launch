@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :user_is_current_user
   def new
     @user = User.new
   end
@@ -16,9 +17,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @user_is_current_user
+  end
+
+  def failed
+    redirect_to root_path error: 'Failed to authenticate'
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path, notice: 'Signed Out!'
+  end
+
+
 private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email)
   end
 
+  def user_is_current_user
+    unless current_user.id == params[:user_id]
+      flash[:notice] = "Please sign in."
+      redirect_to root_path
+    end
+  end
 end
