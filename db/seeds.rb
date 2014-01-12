@@ -1,1 +1,1 @@
-Seeds::NationalAvgData.seed
+Seeds::NationalAvgData.load_data
