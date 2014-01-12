@@ -7,6 +7,4 @@ FactoryGirl.define do
     s 9.99
     p50 9.99
   end
-
-  # use traits  - one trait for male another for female
 end
