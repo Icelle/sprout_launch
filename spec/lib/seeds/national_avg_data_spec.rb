@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Seeds::NationalAvgData do
 
   it 'loads data without duplicates' do
+    # load data twice to ensure duplicates are not added
     Seeds::NationalAvgData.load_data
     Seeds::NationalAvgData.load_data
     expect(NationalAverage.all.count).to eq (1022)
