@@ -1,9 +1,9 @@
 class CreateMeasurements < ActiveRecord::Migration
   def change
     create_table :measurements do |t|
-      t.decimal :height
-      t.decimal :weight
-      t.integer :user_id, index: true, unique:true
+      t.string :measurement_type
+      t.decimal :value
+      t.date :as_of_dt
       t.references :person, index: true, unique:true
 
       t.timestamps

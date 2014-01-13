@@ -1,6 +1,8 @@
 class Measurement < ActiveRecord::Base
-  validates_numericality_of :height, greater_than: 0, presence:true
-  validates_numericality_of :weight, greater_than: 0, presence:true
+  MEASUREMENT_TYPES = %w[height weight]
+
+  validates :measurement_type, inclusion: {in:MEASUREMENT_TYPES}, presence:true
+  validates_numericality_of :value, greater_than: 0, presence:true
 
   belongs_to :person,
     inverse_of: :measurements
