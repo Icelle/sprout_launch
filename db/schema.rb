@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 20131228191052) do
   enable_extension "plpgsql"
 
   create_table "measurements", force: true do |t|
-    t.decimal  "height"
-    t.decimal  "weight"
-    t.integer  "user_id"
+    t.string   "measurement_type"
+    t.decimal  "value"
+    t.date     "as_of_dt"
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
