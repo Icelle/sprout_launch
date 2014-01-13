@@ -221,6 +221,7 @@ GEM
     sqlite3 (1.3.8)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
+    statistics (1.0.0)
     thin (1.5.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -277,6 +278,7 @@ DEPENDENCIES
   shoulda
   simple_form
   spork-rails
+  statistics
   turbolinks
   uglifier (>= 1.3.0)
   valid_attribute

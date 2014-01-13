@@ -45,13 +45,15 @@ group :development, :test do
   gem 'launchy'
   gem 'guard-rspec'
   gem 'spork-rails'
-  gem 'simple_form'
-  gem "distribution", "~> 0.7.0"
-  gem 'devise'
-  gem 'email_spec'
-  gem 'mailcatcher'
-  gem 'mandrill-api'
 end
+
+gem 'simple_form'
+gem "distribution", "~> 0.7.0"
+gem 'devise'
+gem 'email_spec'
+gem 'mailcatcher'
+gem 'mandrill-api'
+gem 'statistics'
 
 group :test do
   gem 'rb-fsevent'
