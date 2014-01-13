@@ -28,17 +28,17 @@ Spork.prefork do
     config.include(EmailSpec::Matchers)
 
     config.before(:suite) do
-        DatabaseCleaner.strategy = :transaction
-        DatabaseCleaner.clean_with(:truncation)
-      end
+      DatabaseCleaner[:active_record].strategy = :truncation, {:except => %w[national_averages]}
+      DatabaseCleaner.clean_with(:truncation, {:except => %w[national_averages]})
+    end
 
-      config.before(:each) do
-        DatabaseCleaner.start
-      end
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
 
-      config.after(:each) do
-        DatabaseCleaner.clean
-      end
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
     # ## Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
