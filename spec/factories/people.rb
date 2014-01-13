@@ -1,11 +1,12 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
+require 'date'
 FactoryGirl.define do
   factory :person do
     first_name "Koa"
     last_name "Brickley"
     gender "female"
-    birthday "2013-12-28"
+    birthday "2011-12-04"
     user
 
   trait :male do
