@@ -28,9 +28,9 @@ module Seeds
         row.each do |k,v|
           if k == "Sex"
             if v == "1"
-              scrubbed_row["gender"] = "M"
+              scrubbed_row["gender"] = "male"
             else
-              scrubbed_row["gender"] = "F"
+              scrubbed_row["gender"] = "female"
             end
           else
             scrubbed_row[k.downcase] = v
