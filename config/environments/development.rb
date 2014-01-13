@@ -1,5 +1,3 @@
-require 'mandrill'
-require Rails.root + 'config/initializers/mandrill_delivery_method.rb'
 Sprout::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -32,5 +30,5 @@ Sprout::Application.configure do
   config.action_mailer.delivery_method = :mandrill
 
   # config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  # config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 end

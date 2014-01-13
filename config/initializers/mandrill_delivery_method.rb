@@ -30,3 +30,5 @@ module Sprout
     end
   end
 end
+
+ActionMailer::Base.add_delivery_method :mandrill, Sprout::MandrillDeliveryMethod
