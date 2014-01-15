@@ -1,4 +1,5 @@
 class NationalAverage < ActiveRecord::Base
+  #method that fetches the appropriate national average (p50 for corresponding agemos and gender)
   def z_score(x)
     if self.l == 0
       (((x/self.m)**self.l)-1)/(self.l * self.s)
@@ -7,13 +8,13 @@ class NationalAverage < ActiveRecord::Base
     end
   end
 
+  #use distribution gem to calculate percentile.
   def percentile(x)
     return (Distribution::Normal.cdf(self.z_score(x))*100).round
   end
 end
 
 
-#method that fetches the appropriate national average (p50 for corresponding agemos and gender)
 #            ((X/M)**L) - 1
 # Z = -------------------------, L≠0
 #                LS

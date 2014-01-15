@@ -7,10 +7,12 @@ class Measurement < ActiveRecord::Base
   belongs_to :person,
     inverse_of: :measurements
 
+  #calculate age based on as_of_dt and convert to months
   def age_mos
     ((self.as_of_dt - self.person.birthday)/30.41).to_f
   end
 
+  #try to match age_mos to agemos in the database to find what percentile person/baby belongs to.
   def get_national_avg
     match_1 = NationalAverage.where("agemos <= ? and gender = ? and stat_type = ?", self.age_mos, self.person.gender, self.measurement_type).order('agemos desc').first
     match_2 = NationalAverage.where("agemos >= ? and gender = ? and stat_type = ?", self.age_mos, self.person.gender, self.measurement_type).order('agemos asc').first
@@ -21,6 +23,7 @@ class Measurement < ActiveRecord::Base
     end
   end
 
+  #get percentile from the national avg search
   def percentile
     natl_avg = self.get_national_avg
     return natl_avg.percentile(self.value)
