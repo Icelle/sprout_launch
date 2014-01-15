@@ -1,5 +1,4 @@
 class NationalAverage < ActiveRecord::Base
-  # @param [class] arg - comment
   def z_score(x)
     if self.l == 0
       (((x/self.m)**self.l)-1)/(self.l * self.s)
@@ -15,9 +14,6 @@ end
 
 
 #method that fetches the appropriate national average (p50 for corresponding agemos and gender)
-
-
-
 #            ((X/M)**L) - 1
 # Z = -------------------------, L≠0
 #                LS
