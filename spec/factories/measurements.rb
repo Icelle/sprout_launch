@@ -5,7 +5,7 @@ FactoryGirl.define do
     measurement_type "height"
     value 9.999
     as_of_dt Date.new(2012,1,4)
-    person
+    person nil
 
     factory :measurement_height_rand do
       measurement_type "height"
@@ -13,9 +13,8 @@ FactoryGirl.define do
     end
 
     factory :measurement_height do
-      measurement_type "weight"
+      measurement_type "height"
       value 9.7
     end
   end
-
 end
