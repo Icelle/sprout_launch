@@ -54,6 +54,7 @@ gem 'email_spec'
 gem 'mailcatcher'
 gem 'mandrill-api'
 gem 'statistics'
+gem 'gon'
 
 group :test do
   gem 'rb-fsevent'

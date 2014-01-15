@@ -77,6 +77,9 @@ GEM
       railties (>= 3.0.0)
     ffi (1.9.3)
     formatador (0.2.4)
+    gon (5.0.1)
+      actionpack (>= 2.3.0)
+      json
     growl (1.0.3)
     guard (2.2.5)
       formatador (>= 0.2.4)
@@ -260,6 +263,7 @@ DEPENDENCIES
   distribution (~> 0.7.0)
   email_spec
   factory_girl_rails
+  gon
   growl
   guard-rspec
   jbuilder (~> 1.2)
