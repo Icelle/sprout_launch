@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+<h1>BABIES</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Gender</th>
+      <th>Birthday</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @persons.each do |person| %>
+      <tr>
+        <td><%= person.first_name %></td>
+        <td><%= person.last_name %></td>
+        <td><%= person.gender %></td>
+        <td><%= person.birthday %></td>
+        <td><%= link_to 'Show Baby Record', person %>
+        <%= link_to 'Track Baby', person %>
+        <%= link_to 'Edit Baby Record', person %>
+        <%= link_to 'Delete Baby', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<script>
+  gon.graph_type = "weight";
+</script>
+
+<%= render 'graph', collection: {graph_type: "weight"} %>
+
+<script>
+  gon.graph_type = "height";
+</script>
+
+<%= render 'graph', collection: {graph_type: "height"} %>
