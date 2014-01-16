@@ -1,0 +1,51 @@
+<!-- table of all of individual baby's measurements, add measurements -->
+<!-- Graph here too -->
+<p id="notice"><%= notice %></p>
+<h1>Baby <%= @person.first_name %></h1>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Height</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @person.measurements.where("measurement_type = ?", "height").order("as_of_dt desc").each do |m| %>
+    <tr>
+    <td><%= m.as_of_dt %></td>
+    <td><%= m.value %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @person.measurements.where("measurement_type = ?", "weight").order("as_of_dt desc").each do |m| %>
+    <tr>
+    <td><%= m.as_of_dt %></td>
+    <td><%= m.value %></td>
+    </tr>
+    <% end %>
+  <tbody>
+  </tbody>
+</table>
+
+<script>
+  gon.graph_type = "weight";
+</script>
+
+<%= render 'graph', collection: {graph_type: "weight"} %>
+
+<script>
+  gon.graph_type = "height";
+</script>
+
+<%= render 'graph', collection: {graph_type: "height"} %>
