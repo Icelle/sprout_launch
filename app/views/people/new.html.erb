@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Add New Baby</h1>
+
+<%= simple_form_for @person do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :gender, as: :select, collection: @person.class::GENDERS %>
+  <%= f.input :birthday%>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to 'Cancel', new_person_path %>
