@@ -1,0 +1,86 @@
+<div class="chart_container">
+  <div id="chart-<%= collection[:graph_type] %>"></div>
+  <div id="legend_container">
+    <div id="smoother" title="Smoothing"></div>
+    <div id="legend-<%= collection[:graph_type] %>"></div>
+  </div>
+  <div id="slider-<%= collection[:graph_type] %>"></div>
+</div>
+
+<script>
+
+// set up data series with 50 random data points
+
+var seriesData = [ [], [], [] ];
+var random = new Rickshaw.Fixtures.RandomData(150);
+
+for (var i = 0; i < 150; i++) {
+  random.addData(seriesData);
+}
+
+series_data = gon.height_data
+
+if (gon.graph_type === "weight") {
+  series_data = gon.weight_data
+}
+
+// instantiate our graph!
+var graph = new Rickshaw.Graph( {
+  element: document.getElementById("chart-"+gon.graph_type),
+  width: 960,
+  height: 500,
+  renderer: 'line',
+
+  // ["hsl(190, 100%, 50%)", "hsl(310, 100%, 50%)", "hsl(70, 100%, 50%)"]
+  series: series_data
+  // series: [
+  //   {
+  //     color: "hsl(190, 50%, 50%)",
+  //     data: seriesData[0],
+  //     name: 'New York'
+  //   }, {
+  //     color: "hsl(310, 50%, 50%)",
+  //     data: seriesData[1],
+  //     name: 'London'
+  //   }, {
+  //     color: "hsl(70, 50%, 50%)",
+  //     data: seriesData[2],
+  //     name: 'Tokyo'
+  //   }
+  // ]
+} );
+
+var slider = new Rickshaw.Graph.RangeSlider.Preview( {
+  graph: graph,
+  element: document.getElementById('slider-'+gon.graph_type),
+} );
+
+var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+  graph: graph
+} );
+
+var legend = new Rickshaw.Graph.Legend( {
+  graph: graph,
+  element: document.getElementById('legend-'+gon.graph_type)
+
+} );
+
+var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
+  graph: graph,
+  legend: legend
+} );
+
+var axes = new Rickshaw.Graph.Axis.Time( {
+  graph: graph
+} );
+axes.render();
+
+var y = new Rickshaw.Graph.Axis.Y( {
+  graph: graph
+} );
+y.render();
+
+// graph.configure({renderer:'line'});
+graph.render();
+
+</script>
