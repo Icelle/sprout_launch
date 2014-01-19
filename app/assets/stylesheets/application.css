@@ -9,7 +9,73 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require foundation_and_overrides
+
+ require foundation_and_overrides
 
  *= require_tree .
  */
+
+.title-text {
+  font-family: 'Crafty Girls', cursive;
+  font-size: 900%;
+  margin: 0 0 25px 0;
+}
+
+input {
+  font-weight: 700;
+}
+
+.logo {
+  margin-top: 20px;
+  height: 612px;
+  width: 285px;
+}
+.tagline {
+  margin-bottom: 100px;
+}
+
+.dropdown {
+  margin-right: 100px;
+}
+
+form select {
+  font-size: 13px;
+  border-radius: 3px;
+  padding: 4px;
+  height: 30px;
+  border: 1px solid #ccc;
+}
+
+#error_explanation h2 {
+  font-size: 18px;
+  color: #BF4B30;
+}
+
+#error_explanation ul {
+  list-style: none;
+}
+
+form .row .form-button {
+  margin-top: 20px;
+}
+
+a .cancel {
+  background-color: red;
+}
+
+#notice {
+  color: #669933;
+  font-weight: 700;
+}
+
+a.zero-margin-bottom {
+  margin-bottom: 0;
+}
+
+.slider {
+  height: 50px;
+}
+
+.legend_container {
+  display: none;
+}

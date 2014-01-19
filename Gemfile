@@ -55,7 +55,7 @@ gem 'mailcatcher'
 gem 'mandrill-api'
 gem 'statistics'
 gem 'gon'
-gem 'foundation-rails'
+gem 'zurb-foundation'
 
 group :test do
   gem 'rb-fsevent'
