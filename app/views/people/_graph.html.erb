@@ -1,23 +1,15 @@
 <div class="chart_container">
   <div id="chart-<%= collection[:graph_type] %>"></div>
-  <div id="legend_container">
-    <div id="smoother" title="Smoothing"></div>
+  <div id="smoother" title="Smoothing"></div>
+  <div id="slider-<%= collection[:graph_type] %>" class="slider"></div>
+  <div class="legend_container">
     <div id="legend-<%= collection[:graph_type] %>"></div>
   </div>
-  <div id="slider-<%= collection[:graph_type] %>"></div>
 </div>
 
 <script>
 
 // set up data series with 50 random data points
-
-var seriesData = [ [], [], [] ];
-var random = new Rickshaw.Fixtures.RandomData(150);
-
-for (var i = 0; i < 150; i++) {
-  random.addData(seriesData);
-}
-
 series_data = gon.height_data
 
 if (gon.graph_type === "weight") {
@@ -27,8 +19,10 @@ if (gon.graph_type === "weight") {
 // instantiate our graph!
 var graph = new Rickshaw.Graph( {
   element: document.getElementById("chart-"+gon.graph_type),
-  width: 960,
-  height: 500,
+  // width: $('#chart-weight').innerWidth(),
+  // height: $('#chart-weight').innerHeight(),
+  width: 480,
+  height: 250,
   renderer: 'line',
 
   // ["hsl(190, 100%, 50%)", "hsl(310, 100%, 50%)", "hsl(70, 100%, 50%)"]
@@ -83,4 +77,11 @@ y.render();
 // graph.configure({renderer:'line'});
 graph.render();
 
+// $(window).on('resize', function(){
+//   graph.configure({
+//     width: $('#chart-weight').innerWidth() - 20,
+//     height: $('#chart-weight').innerHeight() - 20
+//   });
+//   graph.render();
+// });
 </script>
