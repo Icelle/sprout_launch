@@ -51,7 +51,7 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
     respond_to do |format|
       if @person.save
-        format.html{redirect_to new_person_path, notice: "Person was successfully recorded."}
+        format.html{redirect_to new_person_path, notice: "Baby was successfully created."}
       else
         format.html {render action: 'new'}
       end
@@ -61,7 +61,7 @@ class PeopleController < ApplicationController
   def update
     respond_to do |format|
       if @person.update(person_params)
-        format.html { redirect_to  @person, notice: 'Person was successfully updated.' }
+        format.html { redirect_to  @person, notice: 'Baby was successfully updated.' }
       else
         format.html { render action: 'edit' }
       end
@@ -71,7 +71,11 @@ class PeopleController < ApplicationController
   def destroy
     @person.destroy
     respond_to do |format|
-      format.html{redirect_to person_url}
+      if @person.destroy
+        format.html{redirect_to people_path, notice: "Baby was successfully deleted."}
+      else
+        format.html {redirect_to people_path, error: "Baby was not deleted."}
+      end
     end
   end
 
