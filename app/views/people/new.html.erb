@@ -1,13 +1,70 @@
-<p id="notice"><%= notice %></p>
+<div class="row text-center">
+  <div class="small-4 columns text-right">
+    <object class="logo" type="image/svg+xml" data="/assets/sproutly.svg">Your browser does not support SVG</object>
+  </div>
+  <div class="small-7 columns end">
+    <h1 class="title-text">Sproutly</h1>
+    <div class="row">
+    <h3 class="text-center">Add New Baby</h3>
+    <p id="notice"><%= notice %></p>
+      <%= simple_form_for @person do |f| %>
+      <% if @person.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@person.errors.count, "error") %> prohibited this baby from being saved:</h2>
+          <ul>
+          <% @person.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+          <div class="row">
+            <div class="small-3 columns">
+              <%= f.label :first_name, class: "right inline" %>
+            </div>
+            <div class="small-7 columns end">
+              <%= f.text_field :first_name%>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-3 columns">
+              <%= f.label :last_name, class: "right inline" %>
+            </div>
+            <div class="small-7 columns end">
+              <%= f.text_field :last_name %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-3 columns">
+              <label class="select required control-label text-right" for="person_gender">
+                <abbr title="required">*</abbr> Gender
+              </label>
+            </div>
+            <div class="small-2 columns end">
+               <%= f.select :gender, @person.class::GENDERS, :selected => @person.gender %>
+            </div>
+          </div>
 
-<h1>Add New Baby</h1>
-
-<%= simple_form_for @person do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :gender, as: :select, collection: @person.class::GENDERS %>
-  <%= f.input :birthday%>
-  <%= f.button :submit %>
-<% end %>
-
-<%= link_to 'Cancel', new_person_path %>
+          <div class="row">
+            <div class="small-3 columns">
+              <%= f.label :birthday, class: "right inline" %>
+            </div>
+            <div class="small-7 columns end">
+              <%= f.text_field :birthday, :placeholder => 'Jan-01-2014' %>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="small-4 small-offset-3 columns">
+              <%= f.submit "Create", class: "button radius" %>
+            </div>
+            <div class="small-4 columns end", style="margin-left: -60px;">
+              <%= link_to 'Cancel', new_user_session_path, class: "button radius" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
