@@ -1,0 +1,23 @@
+<div class="row text-center">
+  <div class="small-4 columns text-right">
+    <object class="logo" type="image/svg+xml" data="/assets/sproutly.svg">Your browser does not support SVG</object>
+  </div>
+  <div class="small-7 columns end">
+    <h1 class="title-text">Sproutly</h1>
+    <p class = "tagline">A fun and convenient way to keep track of children's weight and height over time.</p>
+    <div class="row">
+    <p id="notice"><%= notice %></p>
+    <% if user_signed_in? %>
+      <div class="small-6 columns small-centered">
+        <p><%= link_to "Add Baby", new_person_path, class: "button radius" %></p>
+       <p><%= link_to "Track Baby", people_path, class: "button radius" %></p>
+      </div>
+    <% else %>
+    <div class="small-6 columns small-centered">
+      <p><%= link_to "Login", new_user_session_path, class: "button radius" %></p>
+      <p><%= link_to "Sign Up", new_user_registration_path, class: "button radius" %></p>
+    </div>
+    <% end %>
+    </div>
+  </div>
+</div>
