@@ -11,7 +11,6 @@
  *= require_self
 
  require foundation_and_overrides
-
  *= require_tree .
  */
 
@@ -78,4 +77,25 @@ a.zero-margin-bottom {
 
 .legend_container {
   display: none;
+}
+
+tbody div {
+  overflow:scroll;
+  height:200px;
+}
+
+table.scrollable table {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+td.scroll-first-td {
+  width: 150px;
+  border: none;
+}
+
+td.scroll-last-td {
+  border: none;
+  border-left: 1px solid #BF4B30;
 }

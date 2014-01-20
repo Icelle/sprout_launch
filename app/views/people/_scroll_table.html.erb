@@ -1,0 +1,26 @@
+<table class="scrollable">
+  <thead>
+    <tr>
+      <th style="width: 150px">Date</th>
+      <th><%= collection[:type] %></th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2" style="padding: 0">
+        <div>
+          <table>
+            <% collection[:measurements].each do |m| %>
+            <tr>
+              <td class="scroll-first-td"><%= m.as_of_dt %></td>
+              <td class="scroll-last-td"><%= m.value %></td>
+              <td class="scroll-last-td">Edit</td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
