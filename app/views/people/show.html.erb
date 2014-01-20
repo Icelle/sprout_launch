@@ -1,51 +1,81 @@
-<!-- table of all of individual baby's measurements, add measurements -->
-<!-- Graph here too -->
+<h2 class="text-center">Baby <%= @person.first_name %></h2>
+<p class="text-center">Compare your child's measurements to the national average.</p>
+<p class="text-center">Birthday: <%= @person.birthday.to_s %> (<%= time_ago_in_words(@person.birthday) %>)</p>
 <p id="notice"><%= notice %></p>
-<h1>Baby <%= @person.first_name %></h1>
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Height</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @person.measurements.where("measurement_type = ?", "height").order("as_of_dt desc").each do |m| %>
-    <tr>
-    <td><%= m.as_of_dt %></td>
-    <td><%= m.value %></td>
-    </tr>
+
+<div class="row">
+  <div class="small-6 columns">
+  <h3 class="text-center">Weight</h3>
+    <script>
+      gon.graph_type = "weight";
+    </script>
+    <%= render 'graph', collection: {graph_type: "weight"} %>
+  </div>
+
+  <div class="small-6 columns">
+  <h3 class="text-center">Height</h3>
+    <script>
+      gon.graph_type = "height";
+    </script>
+    <%= render 'graph', collection: {graph_type: "height"} %>
+  </div>
+</div>
+
+<h2 class="text-center" style="margin-top: 50px"><%= @person.first_name %>'s Measurements</h2>
+<div class="row">
+  <div class="small-6 columns">
+    <h3 class="text-center">Weight</h3>
+    <div class="row">
+      <div class="small-12 columns end">
+        <%= render 'scroll_table', collection: {measurements: @person.measurements.where("measurement_type = ?", "weight").order("as_of_dt desc"), type: "Weight"} %>
+        </div>
+    </div>
+  </div>
+
+  <div class="small-6 columns text-center">
+  <h3 class="text-center">Height</h3>
+
+    <%= render 'scroll_table', collection: {measurements: @person.measurements.where("measurement_type = ?", "height").order("as_of_dt desc"), type: "Height"} %>
+  </div>
+</div>
+</div>
+
+
+
+
+
+<!--
+<div class="row">
+  <h3 class = "text-center">Weight</h3>
+  <div class="small-12">
+
+    <% if @gon.weight_data %>
+      <script>
+        gon.graph_type = "weight";
+      </script>
+      <div class="row" style="margin-bottom: 40px; border-bottom: 2px solid #BF4B30; padding-bottom: 10px;">
+        <div class="small-3 columns">
+          <%= render 'scroll_table', collection: {measurements: @person.measurements.where("measurement_type = ?", "weight").order("as_of_dt desc"), type: "Weight"} %>
+        </div>
+        <div class="small-9 columns end">
+          <%= render 'graph', collection: {graph_type: "weight"} %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
 
-
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Weight</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @person.measurements.where("measurement_type = ?", "weight").order("as_of_dt desc").each do |m| %>
-    <tr>
-    <td><%= m.as_of_dt %></td>
-    <td><%= m.value %></td>
-    </tr>
+    <h3 class = "text-center">Height</h3>
+    <% if @gon.height_data %>
+      <script>
+        gon.graph_type = "height";
+      </script>
+      <div class="row">
+        <div class="small-3 columns">
+          <%= render 'scroll_table', collection: {measurements: @person.measurements.where("measurement_type = ?", "height").order("as_of_dt desc"), type: "Height"} %>
+        </div>
+        <div class="small-9 columns end">
+          <%= render 'graph', collection: {graph_type: "height"} %>
+        </div>
     <% end %>
-  <tbody>
-  </tbody>
-</table>
-
-<script>
-  gon.graph_type = "weight";
-</script>
-
-<%= render 'graph', collection: {graph_type: "weight"} %>
-
-<script>
-  gon.graph_type = "height";
-</script>
-
-<%= render 'graph', collection: {graph_type: "height"} %>
+  </div>
+</div>
+ -->
