@@ -16,6 +16,12 @@ if (gon.graph_type === "weight") {
   series_data = gon.weight_data
 }
 
+var xAxisFormat = function(n) {
+  return n.toString()
+}
+
+
+
 // instantiate our graph!
 var graph = new Rickshaw.Graph( {
   element: document.getElementById("chart-"+gon.graph_type),
@@ -24,24 +30,7 @@ var graph = new Rickshaw.Graph( {
   width: 480,
   height: 250,
   renderer: 'line',
-
-  // ["hsl(190, 100%, 50%)", "hsl(310, 100%, 50%)", "hsl(70, 100%, 50%)"]
   series: series_data
-  // series: [
-  //   {
-  //     color: "hsl(190, 50%, 50%)",
-  //     data: seriesData[0],
-  //     name: 'New York'
-  //   }, {
-  //     color: "hsl(310, 50%, 50%)",
-  //     data: seriesData[1],
-  //     name: 'London'
-  //   }, {
-  //     color: "hsl(70, 50%, 50%)",
-  //     data: seriesData[2],
-  //     name: 'Tokyo'
-  //   }
-  // ]
 } );
 
 var slider = new Rickshaw.Graph.RangeSlider.Preview( {
@@ -49,30 +38,54 @@ var slider = new Rickshaw.Graph.RangeSlider.Preview( {
   element: document.getElementById('slider-'+gon.graph_type),
 } );
 
-var hoverDetail = new Rickshaw.Graph.HoverDetail( {
-  graph: graph
-} );
+if (gon.agemos) {
+  var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+    graph: graph,
+    formatter: function(series, x, y) {
+      var date = x
+      var swatch = '<span class="detail_swatch" style="background-color: ' + series.color + '"></span>';
+      var content = swatch + series.name + ": " + parseInt(y) + '<br>' + "Age: " + x + " months";
+      return content;
+    }
+  } );
+
+}
+else {
+  var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+    graph: graph
+  });
+}
 
 var legend = new Rickshaw.Graph.Legend( {
   graph: graph,
   element: document.getElementById('legend-'+gon.graph_type)
-
-} );
+});
 
 var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
   graph: graph,
   legend: legend
-} );
-
-var axes = new Rickshaw.Graph.Axis.Time( {
-  graph: graph
-} );
-axes.render();
+});
 
 var y = new Rickshaw.Graph.Axis.Y( {
   graph: graph
 } );
 y.render();
+
+if (gon.agemos) {
+  var axes = new Rickshaw.Graph.Axis.X( {
+    graph: graph,
+    // orientation: 'bottom',
+    // pixelsPerTick: 200,
+    tickFormat: xAxisFormat
+  });
+  axes.render();
+}
+else {
+  var axes = new Rickshaw.Graph.Axis.Time( {
+    graph: graph
+  } );
+  axes.render();
+}
 
 // graph.configure({renderer:'line'});
 graph.render();
