@@ -34,7 +34,6 @@ end
 
 group :development, :test do
   gem 'database_cleaner'
-  gem 'validates_timeliness'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'shoulda'
@@ -47,6 +46,7 @@ group :development, :test do
   gem 'spork-rails'
 end
 
+gem 'validates_timeliness'
 gem 'simple_form'
 gem "distribution", "~> 0.7.0"
 gem 'devise'
@@ -60,6 +60,13 @@ gem 'zurb-foundation'
 group :test do
   gem 'rb-fsevent'
   gem 'growl'
+end
+
+group :development do
+  gem 'capistrano', '~> 3.0', require: false
+  gem 'capistrano-rvm',   '~> 0.1', require: false
+  gem 'capistrano-rails',   '~> 1.1', require: false
+  gem 'capistrano-bundler', '~> 1.1', require: false
 end
 
 # Use ActiveModel has_secure_password
