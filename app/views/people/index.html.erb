@@ -1,9 +1,16 @@
-<h2 class="text-center">Baby Graphs</h1>
-<p>Compare your children's measurements as they reach certain milestones.</p>
+<h2 class="text-center">Baby Graphs</h2>
+<p class="text-center">Compare your children's measurements as they reach certain milestones.</p>
+
+<% if current_page?(:controller => 'people', :action => 'index') %>
+  <style>
+    .rickshaw_graph .detail .x_label { display: none }
+  </style>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 <div class="row">
   <div class="small-6 columns">
-  <p>Weight</p>
+  <h3 class="text-center">Weight</h3>
     <script>
       gon.graph_type = "weight";
     </script>
@@ -11,7 +18,7 @@
   </div>
 
   <div class="small-6 columns">
-  <p>Height</p>
+  <h3 class="text-center">Height</h3>
     <script>
       gon.graph_type = "height";
     </script>
