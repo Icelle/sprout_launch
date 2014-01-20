@@ -2,9 +2,10 @@ class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   def index
-    @persons = Person.all
-    gon.weight_data = fetch_all_people_data("weight")
-    gon.height_data = fetch_all_people_data("height")
+    @persons = current_user.people
+    gon.weight_data = current_user.fetch_children_graph("weight")
+    gon.height_data = current_user.fetch_children_graph("height")
+    gon.agemos = true
   end
 
   def new
@@ -12,39 +13,18 @@ class PeopleController < ApplicationController
   end
 
   def show
-    # TODO: handle when no data returned
-    gon.weight_data = fetch_person_data("weight")
-    gon.height_data = fetch_person_data("height")
-  end
+    weight = @person.fetch_graph_with_national_avg("weight")
+    height = @person.fetch_graph_with_national_avg("height")
 
-  def fetch_all_people_data(type)
-    data = []
-    people = current_user.people
-    colors = gen_colors(people.size)
-
-    people.each_with_index do |p, idx|
-      data_points = p.fetch_graph_data(type)
-
-      if !data_points.empty?
-        data.push({
-          color: colors[idx],
-          data: data_points,
-          name: "#{p.first_name + " " + p.last_name}"
-          })
-      end
+    if !weight.nil?
+      gon.weight_data = weight
     end
-    return data
-  end
 
-  def fetch_person_data(type)
-    data = []
-    color = gen_colors(1)
-    data.push({
-      color: color,
-      data: @person.fetch_graph_data(type),
-      name: "#{@person.first_name + " " + @person.last_name}"
-      })
-    return data
+    if !height.nil?
+      gon.height_data = height
+    end
+    # TODO: figure out how to add this as an after filter
+    @gon = gon
   end
 
   def create

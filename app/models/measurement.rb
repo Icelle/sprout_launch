@@ -8,6 +8,7 @@ class Measurement < ActiveRecord::Base
     inverse_of: :measurements
 
   #calculate age based on as_of_dt and convert to months
+  #approx 30.41 days in a month
   def age_mos
     ((self.as_of_dt - self.person.birthday)/30.41).to_f
   end
@@ -28,7 +29,8 @@ class Measurement < ActiveRecord::Base
     natl_avg = self.get_national_avg
     return natl_avg.percentile(self.value)
   end
+
+  def get_xy
+    return {"x"=> self.as_of_dt.strftime('%s').to_i, "y" => self.value.to_f}
+  end
 end
-
-
-# date | weight/height | percentile
