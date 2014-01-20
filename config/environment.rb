@@ -11,5 +11,8 @@ Sprout::Application.configure do
     sign_in: "http://sprout.icelle.com/users/sign_in"
   }
 
-  config.mandrill_mailer = Mandrill::API.new("QrSfN11kFNdZZbIRcDCUBQ")
+  APP_CONFIG = YAML.load_file("#{Rails.root}/config/secrets.yml")[Rails.env]
+
+  config.mandrill_mailer = Mandrill::API.new(APP_CONFIG["mandrill"])
+
 end
