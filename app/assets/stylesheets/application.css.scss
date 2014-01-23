@@ -11,6 +11,8 @@
  *= require_self
 
  require foundation_and_overrides
+ *= require pickadate/default
+ *= require pickadate/default.date
  *= require_tree .
  */
 
@@ -79,38 +81,41 @@ a.zero-margin-bottom {
   display: none;
 }
 
-tbody div {
-  overflow:scroll;
-  height:200px;
-}
+.scrollable{
 
-table.scrollable table {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
+    tbody div {
+      overflow:scroll;
+      height:200px;
+    }
 
-td.scroll-first-td {
-  width: 150px;
-  border: none;
-  font-size: 15px;
-}
+    table.scrollable table {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
 
-td.scroll-second-td {
-  width: 99px;
-}
+    td.scroll-first-td {
+      width: 150px;
+      border: none;
+      font-size: 15px;
+    }
 
-td.scroll-last-td {
-  border: none;
-  border-left: 1px solid #BF4B30;
-  width: 137px;
-  font-size: 15px;
-}
+    td.scroll-second-td {
+      width: 99px;
+    }
 
-th.date {
-  width: 114px;
-}
+    td.scroll-last-td {
+      border: none;
+      border-left: 1px solid #BF4B30;
+      width: 137px;
+      font-size: 15px;
+    }
 
-th.action{
-  width: 108px;
+    th.date {
+      width: 114px;
+    }
+
+    th.action{
+      width: 108px;
+    }
 }
