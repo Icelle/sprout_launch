@@ -2,10 +2,13 @@ class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   def index
-    @persons = current_user.people
+    @people = current_user.people
     gon.weight_data = current_user.fetch_children_graph("weight")
     gon.height_data = current_user.fetch_children_graph("height")
     gon.agemos = true
+  end
+
+  def edit
   end
 
   def new
@@ -36,9 +39,10 @@ class PeopleController < ApplicationController
 
   def create
     @person = Person.new(person_params)
+    @person.user = current_user
     respond_to do |format|
       if @person.save
-        format.html{redirect_to new_person_path, notice: "Baby was successfully created."}
+        format.html{redirect_to people_path, notice: "Baby was successfully created."}
       else
         format.html {render action: 'new'}
       end
