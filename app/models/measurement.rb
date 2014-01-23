@@ -4,6 +4,7 @@ class Measurement < ActiveRecord::Base
   validates :measurement_type, inclusion: {in:MEASUREMENT_TYPES}, presence:true
   validates_numericality_of :value, greater_than: 0, presence:true
 
+  validates_presence_of :as_of_dt, :message => "Measurement date can't be blank."
   belongs_to :person,
     inverse_of: :measurements
 
