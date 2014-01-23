@@ -13,7 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
+//= require pickadate/picker
+//= require pickadate/picker.date
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+$(function(){
+$('.datepicker').pickadate({
+  selectYears: 50,
+  max: new Date()
+});
+});
