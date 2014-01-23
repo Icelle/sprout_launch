@@ -1,7 +1,6 @@
 var RenderControls = function(args) {
 
 	this.initialize = function() {
-
 		this.element = args.element;
 		this.graph = args.graph;
 		this.settings = this.serialize();
@@ -130,4 +129,3 @@ var RenderControls = function(args) {
 
 	this.initialize();
 };
-
