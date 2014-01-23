@@ -20,4 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      measurement:
+        as_of_dt: "Measurement Date"
+        value: "Measurement Value"
+    errors:
+      models:
+        measurement:
+          attributes:
+            as_of_dt:
+              blank: "is required"
+            value:
+              numericality: "is not a number"
