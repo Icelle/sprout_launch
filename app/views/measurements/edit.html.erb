@@ -1,0 +1,41 @@
+<div class="row text-center">
+  <div class="small-4 columns text-right">
+    <object class="logo" type="image/svg+xml" data="<%= image_path("sproutly.svg") %>">Your browser does not support SVG</object>
+  </div>
+  <div class="small-7 columns end">
+    <h1 class="title-text">Sproutly</h1>
+    <div class="row">
+    <h3 class="text-center">Edit Measurement</h3>
+    <p id="notice"><%= notice %></p>
+    <div class="small-4 columns text-center">
+    <h6> Please enter height in centimeters and weight in kilograms. </h6>
+      <%= form_for(@measurement) do |f| %>
+      <% if @measurement.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@measurement.errors.count, "error") %> prohibited this measurement from being saved:</h2>
+          <ul>
+          <% @measurement.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+        </div>
+      <% end %>
+      <div class="row">
+        <label>Measurement Type</label>
+      </div>
+        <%= f.select :measurement_type, Measurement::MEASUREMENT_TYPES, :selected => @measurement.measurement_type %>
+        <label> Measurement </label>
+        <%= f.text_field :value %>
+        <label> Date Measured </label>
+        <%= f.text_field :as_of_dt %>
+      <div class="small-6 columns">
+        <%= f.submit "Submit", class: "button radius small" %>
+      </div>
+      <div class="small-6 columns">
+        <%= link_to 'Cancel', person_path(@measurement.person), class: "button radius small" %>
+      </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>

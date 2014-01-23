@@ -1,0 +1,70 @@
+<div class="row text-center">
+  <div class="small-4 columns text-right">
+    <object class="logo" type="image/svg+xml" data="<%= image_path("sproutly.svg") %>">Your browser does not support SVG</object>
+  </div>
+  <div class="small-7 columns end">
+    <h1 class="title-text">Sproutly</h1>
+    <div class="row">
+    <h3 class="text-center"><%=collection[:h3]%></h3>
+    <p id="notice"><%= notice %></p>
+      <%= simple_form_for @person do |f| %>
+      <% if @person.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@person.errors.count, "error") %> prohibited this baby from being saved:</h2>
+          <ul>
+          <% @person.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+          <div class="row">
+            <div class="small-3 columns">
+              <%= f.label :first_name, class: "right inline" %>
+            </div>
+            <div class="small-7 columns end">
+              <%= f.text_field :first_name%>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-3 columns">
+              <%= f.label :last_name, class: "right inline" %>
+            </div>
+            <div class="small-7 columns end">
+              <%= f.text_field :last_name %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="small-3 columns">
+              <label class="select required control-label text-right" for="person_gender">
+                <abbr title="required">*</abbr> Gender
+              </label>
+            </div>
+            <div class="small-2 columns end">
+               <%= f.select :gender, Person::GENDERS, :selected => @person.gender %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="small-3 columns">
+              <%= f.label :birthday, class: "right inline" %>
+            </div>
+            <div class="small-7 columns end">
+              <%= f.text_field :birthday, :placeholder => 'Jan-01-2014' %>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <div class="small-4 small-offset-3 columns">
+              <%= f.submit collection[:button], class: "button radius" %>
+            </div>
+            <div class="small-4 columns end", style="margin-left: -60px;">
+              <%= link_to 'Cancel', collection[:path], class: "button radius" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
