@@ -25,6 +25,13 @@ class PeopleController < ApplicationController
     end
     # TODO: figure out how to add this as an after filter
     @gon = gon
+    if session[:measurement]
+      @measurement = Measurement.new(session[:measurement])
+      @measurement.valid?
+      session.delete(:measurement)
+    else
+      @measurement = Measurement.new({:person => @person, :as_of_dt => Date.today})
+    end
   end
 
   def create
