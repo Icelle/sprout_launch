@@ -93,9 +93,24 @@ table.scrollable table {
 td.scroll-first-td {
   width: 150px;
   border: none;
+  font-size: 15px;
+}
+
+td.scroll-second-td {
+  width: 99px;
 }
 
 td.scroll-last-td {
   border: none;
   border-left: 1px solid #BF4B30;
+  width: 137px;
+  font-size: 15px;
+}
+
+th.date {
+  width: 114px;
+}
+
+th.action{
+  width: 108px;
 }
