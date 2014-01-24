@@ -24,7 +24,7 @@ class Person < ActiveRecord::Base
   end
 
   def fetch_agemos_data(type)
-    self.measurements.where(:measurement_type => type).map {|measurement| {"x" => measurement.age_mos.round(1) , "y" => measurement.value.to_f}}
+    self.measurements.where(:measurement_type => type).order('as_of_dt asc').map {|measurement| {"x" => measurement.age_mos.round(1) , "y" => measurement.value.to_f}}
   end
 
   # @param [String] type- height and weight for a given person
