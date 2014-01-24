@@ -56,11 +56,8 @@
     <%= f.text_field :value %>
     <label> Date Measured </label>
     <%= f.text_field :as_of_dt %>
-  <div class="small-6 columns">
-    <%= f.submit "Submit", class: "button radius small" %>
-  </div>
-  <div class="small-6 columns">
-    <%= link_to 'Cancel', person_path, class: "button radius small" %>
+  <div class="small-12 small-centered columns">
+    <%= f.submit "Add Measurement", class: "button radius small" %>
   </div>
   <% end %>
 </div>
